@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<script src="https://cdn.firebase.com/js/client/2.4.1/firebase.js"></script>
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.3/angularfire.min.js"></script>
+<script src="controllers/indexController.js"></script>
+<script src="controllers/userController.js"></script>
+<script src="controllers/providerController.js"></script>
+<script src="controllers/adminController.js"></script>
+
+<title>Towing made easy</title>
+<body>
+<head>
+
+    <h1 style="text-align:center;">Towing Made Easy</h1>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    
+    
+    <link rel="stylesheet" href="css/normalize.css">
+
+    
+        <style>
+       
+      /* NOTE: The styles were added inline because Prefixfree needs access to your styles and they must be inlined if they are on local disk! */
+      @import url(http://fonts.googleapis.com/css?family=Open+Sans);
+.btn { display: inline-block; *display: inline; *zoom: 1; padding: 4px 10px 4px; margin-bottom: 0; font-size: 13px; line-height: 18px; color: #333333; text-align: center;text-shadow: 0 1px 1px rgba(255, 255, 255, 0.75); vertical-align: middle; background-color: #f5f5f5; background-image: -moz-linear-gradient(top, #ffffff, #e6e6e6); background-image: -ms-linear-gradient(top, #ffffff, #e6e6e6); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#e6e6e6)); background-image: -webkit-linear-gradient(top, #ffffff, #e6e6e6); background-image: -o-linear-gradient(top, #ffffff, #e6e6e6); background-image: linear-gradient(top, #ffffff, #e6e6e6); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#ffffff, endColorstr=#e6e6e6, GradientType=0); border-color: #e6e6e6 #e6e6e6 #e6e6e6; border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25); border: 1px solid #e6e6e6; -webkit-border-radius: 4px; -moz-border-radius: 4px; border-radius: 4px; -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); -moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05); cursor: pointer; *margin-left: .3em; }
+.btn:hover, .btn:active, .btn.active, .btn.disabled, .btn[disabled] { background-color: #e6e6e6; }
+.btn-large { padding: 9px 14px; font-size: 15px; line-height: normal; -webkit-border-radius: 5px; -moz-border-radius: 5px; border-radius: 5px; }
+.btn:hover { color: #333333; text-decoration: none; background-color: #e6e6e6; background-position: 0 -15px; -webkit-transition: background-position 0.1s linear; -moz-transition: background-position 0.1s linear; -ms-transition: background-position 0.1s linear; -o-transition: background-position 0.1s linear; transition: background-position 0.1s linear; }
+.btn-primary, .btn-primary:hover { text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25); color: #ffffff; }
+.btn-primary.active { color: rgba(255, 255, 255, 0.75); }
+.btn-primary { background-color: #4a77d4; background-image: -moz-linear-gradient(top, #6eb6de, #4a77d4); background-image: -ms-linear-gradient(top, #6eb6de, #4a77d4); background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#6eb6de), to(#4a77d4)); background-image: -webkit-linear-gradient(top, #6eb6de, #4a77d4); background-image: -o-linear-gradient(top, #6eb6de, #4a77d4); background-image: linear-gradient(top, #6eb6de, #4a77d4); background-repeat: repeat-x; filter: progid:dximagetransform.microsoft.gradient(startColorstr=#6eb6de, endColorstr=#4a77d4, GradientType=0);  border: 1px solid #3762bc; text-shadow: 1px 1px 1px rgba(0,0,0,0.4); box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.5); }
+.btn-primary:hover, .btn-primary:active, .btn-primary.active, .btn-primary.disabled, .btn-primary[disabled] { filter: none; background-color: #4a77d4; }
+.btn-block { width: 100%; display:block; }
+
+* { -webkit-box-sizing:border-box; -moz-box-sizing:border-box; -ms-box-sizing:border-box; -o-box-sizing:border-box; box-sizing:border-box; }
+
+html { width: 100%; height:100%; overflow:hidden; }
+
+body { 
+    background: url(main.jpg) no-repeat;
+    background-size: 100% 100%;
+    }
+.login { 
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -150px 0 0 -150px;
+    width:300px;
+    height:300px;
+}
+.login h1 { color: #F7DC6F; text-shadow: 0 0 10px rgba(0,0,0,0.3); letter-spacing:1px; text-align:center; }
+
+input { 
+    width: 100%; 
+    margin-bottom: 10px; 
+    background: rgba(0,0,0,0.3);
+    border: none;
+    outline: none;
+    padding: 10px;
+    font-size: 13px;
+    color: #fff;
+    text-shadow: 1px 1px 1px rgba(0,0,0,0.3);
+    border: 1px solid rgba(0,0,0,0.3);
+    border-radius: 4px;
+    box-shadow: inset 0 -5px 45px rgba(100,100,100,0.2), 0 1px 1px rgba(255,255,255,0.2);
+    -webkit-transition: box-shadow .5s ease;
+    -moz-transition: box-shadow .5s ease;
+    -o-transition: box-shadow .5s ease;
+    -ms-transition: box-shadow .5s ease;
+    transition: box-shadow .5s ease;
+}
+input:focus { box-shadow: inset 0 -5px 45px rgba(100,100,100,0.4), 0 1px 1px rgba(255,255,255,0.2); }
+
+    </style>
+
+<script src="js/prefixfree.min.js"></script>
+
+    
+  </head>
+<body ng-app="myApp" ng-controller="indexController">
+    <div ng-if="isAuthenticated == false" class="login-form">
+        <form>
+            <li>
+                <input type="text" ng-model="username" placeholder = "Username"/>
+            </li>
+            <li>
+                <input type="password" ng-model="password" placeholder = "Password"/>
+            </li>
+            <div align="center">
+            <input type="submit" ng-click="login()" value="SIGN IN">
+            </div>
+        </form>
+    </div>
+
+<div ng-if="isAuthenticated == true">
+        <h1>Welcome {{ userEmail }} - {{ role }}</h1>
+        <button ng-click="logout()">logout</button>
+        
+        <div id="main" ng-if="role == 'user'" ng-controller="userController">
+        <script src="https://checkout.stripe.com/checkout.js"></script>
+        <script>
+          var handler = StripeCheckout.configure({
+            key: 'pk_test_ja9mbiJW0FGpbGRUsyOOEhVB',
+            image: '/img/documentation/checkout/marketplace.png',
+            locale: 'auto',
+            token: function(token) 
+            {
+                var scope = angular.element(document.getElementById("main")).scope();
+                scope = scope.$$childHead;
+                var numberOfCars = 0;
+                var instructions = "";
+
+                if(scope.serviceType == 'towing')
+                {
+                    numberOfCars = scope.numberOfmiles;
+                    instructions = scope.instructions;
+                }
+                
+                var cost = scope.costPerUnit * numberOfmiles * 10;
+                $.post( "http://localhost:3000/checkout", { stripeToken: token.id, amount: cost }, function(result)
+                {
+                    if(result == 'success')
+                    {
+                        //save to firebase
+                        scope.newServiceRequest(scope.serviceType, numberOfCars, instructions, cost);
+
+                        //reset form
+                        scope.reset();
+                    }
+                    else
+                    {
+                        console.log("blah");
+                    }
+                });
+                
+              // Use the token to create the charge with a server-side script.
+              // You can access the token ID with `token.id`
+            }
+          });
+
+          function purchaseButtonPressed() 
+          {
+            var scope = angular.element(document.getElementById("main")).scope();
+            scope = scope.$$childHead;
+            var numberOfCars = 0;
+            if(scope.serviceType == 'snow')
+            {
+                numberOfmiles = scope.snow_numberOfmiles;
+            }
+            
+        var cost = scope.costPerUnit * numberOfCars * 100;
+            // Open Checkout with further options
+            handler.open({
+              name: 'iLASH Checkout: ' + scope.serviceType,
+              description: "Property Size: " + numberOfmiles,
+              amount: cost
+            });
+          }
+
+          // Close Checkout on page navigation
+          $(window).on('popstate', function() {
+            handler.close();
+          });
+        </script>
+            <table width="100%">
+                <tr>
+                  <td width="50%">
+                    <form novalidate>
+                        <h2>Service Type</h2>
+                        <button ng-click="towingButtonOnClick()">Towing</button>
+                        <div ng-if="serviceType == 'towing'">
+                            <h1>Towing</h1>
+                            <h1>Current Cost: {{costPerUnit * numberOfmiles}}</h1>
+                            <input type="text"  ng-model="snow_numberOfCars" style="border: 2px solid #ccc;" width="100%" placeholder="Number of Miles">
+                            
+                            <input type="text"  ng-model="snow_instructions" style="border: 2px solid #ccc;" width="100%" placeholder="Special Instructions">
+                            
+                            <button ng-if="numberOfmiles > 0" onclick="purchaseButtonPressed()">Purchase</button>
+                        </div>
+                        
+                    </form>
+                    
+                  </td>
+                  <td width="50%">
+                    <h3>Pending Requests (no provider yet)</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ provider: 'n/a'}">Waiting For A Provider - {{ obj.name }} ({{ obj.size}} - cars)</li>
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td width="50%">
+                    <h3>Incomplete Jobs</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ completed: false, provider: '!n/a'}">Waiting For Service Completion - {{ obj.name }} ({{ obj.size}} - cars)</li>
+                    </ul>
+                  </td>
+                  <td width="50%">
+                    <h3>Completed Jobs</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ completed: true}">Completed Service - {{ obj.name }} ({{ obj.size}} - cars)</li>
+                    </ul>
+                  </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="main" ng-if="role == 'provider'" ng-controller="providerController">
+            <table width="50%">
+                <tr>
+                  <td>
+                    <h3>Pending Requests (no provider yet)</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ provider: 'n/a'}"><button ng-click="claimRequest(obj)">Accept - {{ obj.name }} ({{ obj.size}} - miles)</button></li>
+                    </ul>
+                  </td>
+                  <td width="50%">
+                    <h3>Accepted Jobs</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ completed: false, provider: myUID}"><button ng-click="completeRequest(obj)">Complete - {{ obj.name }} ({{ obj.size}} - miles)</button></li>
+                    </ul>
+                  </td>
+                  </tr>
+                  <tr>
+                  <td width="50%">
+                    <h3>Completed Jobs</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ completed: true, provider: myUID}">{{ obj.name }} ({{ obj.size}} - cars) -> ${{obj.cost/100*10}}</li>
+                    </ul>
+                  </td>
+                  <td width="50%">
+                    <h3>Account Balance</h3>
+                    <ul>
+                        <li>${{myAccountTotal}}</li>
+                    </ul>
+                  </td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="main" ng-if="role == 'admin'" ng-controller="adminController">
+            <table width="50%">
+                <tr>
+                  <td>
+                    <h3>Pending Requests (no provider yet)</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ provider: 'n/a'}">{{ obj.name }} ({{ obj.size}} - miles)</li>
+                    </ul>
+                  </td>
+                  <td width="50%">
+                    <h3>Accepted Jobs</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ completed: false, provider: '!n/a'}">{{ obj.name }} ({{ obj.size}} - miles)</li>
+                    </ul>
+                  </td>
+                  </tr>
+                  <tr>
+                  <td width="50%">
+                    <h3>Completed Jobs</h3>
+                    <ul>
+                        <li ng-repeat="obj in service_request_data | filter:{ completed: true, provider: '!n/a'}"><button ng-click="payoutProvider(obj)">Payout - {{ obj.name }} ({{ obj.size}} - cars) -> ${{obj.cost/100*0.8}}</button></li>
+                    </ul>
+                  </td>
+                  <td width="50%">
+                    <h3>Account Balance</h3>
+                    <ul>
+                        <li>${{myAccountTotal}}</li>
+                    </ul>
+                  </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</body>
+</html>
